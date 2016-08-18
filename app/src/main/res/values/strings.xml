@@ -5,5 +5,6 @@
     <string name="correct_ans">Correct Answer</string>
     <string name="incorrect_ans">Incorrect Answer</string>
     <string name="next_button">Next</string>
+    <string name="count">No of correct answers =</string>
     <string name="Welcome">WELCOME</string>
 </resources>

@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
    private Button mYesButton;
     private Button mNoButton;
     private Button mNextButton;
+    private TextView cor_tv;
     static boolean ans=false;
     static int ran;
  public boolean isPrime(int r)
@@ -52,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
         {
             Toast toast = Toast.makeText(context,"correct", duration);
             toast.show();
+            cor_tv=(TextView)findViewById(R.id.correct_tv);
+            int c=Integer.parseInt(cor_tv.getText().toString());
+            c=c+1;
+            cor_tv.setText(String.valueOf(c));
+
+
         }
         if(b==false)
         {
