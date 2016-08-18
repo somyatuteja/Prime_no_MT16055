@@ -2,6 +2,7 @@
     <string name="app_name">Prime_no</string>
     <string name="yes_button">Yes</string>
     <string name="no_button">No</string>
-    <string name="cor_ans">Correct Answer</string>
-    <string name="incor_ans">Incorrect Answer</string>
+    <string name="correct_ans">Correct Answer</string>
+    <string name="incorrect_ans">Incorrect Answer</string>
+    <string name="next_button">Next</string>
 </resources>

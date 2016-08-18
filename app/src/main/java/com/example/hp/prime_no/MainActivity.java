@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     static final String LAST_QUESTION="Last_Question";
    private Button mYesButton;
     private Button mNoButton;
+    private Button mNextButton;
     static boolean ans=false;
     static int ran;
  public boolean isPrime(int r)
@@ -63,34 +64,43 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.v(TAG, "In onCreate");
-        mYesButton=(Button)findViewById(R.id.YesButton);
-        mNoButton=(Button)findViewById(R.id.NoButton);
-        if(savedInstanceState==null) {
+        mYesButton = (Button) findViewById(R.id.YesButton);
+        mNoButton = (Button) findViewById(R.id.NoButton);
+        mNextButton = (Button) findViewById(R.id.NextButton);
+        if (savedInstanceState == null) {
             this.changeQuestion();
-            Log.v(TAG,"Null saved Instance");
-        }
-        else
-        {
-            ran=savedInstanceState.getInt(LAST_QUESTION);
-            TextView QuestionTextView=(TextView)findViewById(R.id.abc);
-            QuestionTextView.setText("Is "+ran+" a prime no?");
-            Log.v(TAG1,"Restored");
+            Log.v(TAG, "Null saved Instance");
+        } else {
+            ran = savedInstanceState.getInt(LAST_QUESTION);
+            TextView QuestionTextView = (TextView) findViewById(R.id.abc);
+            QuestionTextView.setText("Is " + ran + " a prime no?");
+            Log.v(TAG1, "Restored");
         }
         mNoButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               showToast(!ans);
-               changeQuestion();
-           }
-       });
+            @Override
+            public void onClick(View v) {
+                showToast(!ans);
+                // changeQuestion();
+            }
+        });
         mYesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showToast(ans);
+                //changeQuestion();
+            }
+        });
+        mNextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 changeQuestion();
             }
         });
     }
+
+
+
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState){
         super.onSaveInstanceState(savedInstanceState);

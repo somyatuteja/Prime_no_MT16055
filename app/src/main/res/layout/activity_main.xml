@@ -13,6 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="100dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:paddingBottom="20dp"
         android:id="@+id/abc"
@@ -43,6 +44,12 @@
         android:id="@+id/NoButton"
         android:background="#ffffff"/>
 </LinearLayout>
-
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/next_button"
+    android:id="@+id/NextButton"
+    android:layout_gravity="center"
+    android:background="#ffffff"/>
 
 </LinearLayout>
