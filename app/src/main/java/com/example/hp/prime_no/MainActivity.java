@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,8 +15,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
-    public static final String TAG1 = "Saved Instance";
-    static final String LAST_QUESTION="Last_Question";
+    static final String LAST_QUESTION="Last Question";
+    static final String LAST_ANSWER="Last Answer";
    private Button mYesButton;
     private Button mNoButton;
     private Button mNextButton;
@@ -72,9 +73,10 @@ public class MainActivity extends AppCompatActivity {
             Log.v(TAG, "Null saved Instance");
         } else {
             ran = savedInstanceState.getInt(LAST_QUESTION);
+            ans=savedInstanceState.getBoolean(LAST_ANSWER);
             TextView QuestionTextView = (TextView) findViewById(R.id.abc);
             QuestionTextView.setText("Is " + ran + " a prime no?");
-            Log.v(TAG1, "Restored");
+            Log.v(TAG, "Restored");
         }
         mNoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
         Log.i(TAG, "Inside onSaveInstance");
         savedInstanceState.putInt(LAST_QUESTION,ran);
-        //savedInstanceState.putBoolean(LAST_QUESTION,ans);
+        savedInstanceState.putBoolean(LAST_ANSWER,ans);
     }
 
     @Override

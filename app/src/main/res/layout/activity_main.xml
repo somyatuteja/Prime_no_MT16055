@@ -25,31 +25,43 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_margin="5dp"
         android:paddingBottom="2dp"
         android:paddingTop="2dp"
         android:paddingRight="1dp"
         android:paddingLeft="1dp"
         android:text="@string/yes_button"
         android:id="@+id/YesButton"
-        android:background="#ffffff" />
+        android:background="#ffffff"
+        android:drawableLeft="@drawable/yes_icon"
+
+        />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_margin="5dp"
         android:paddingBottom="2dp"
         android:paddingTop="2dp"
         android:paddingRight="1dp"
         android:paddingLeft="1dp"
+
         android:text="@string/no_button"
         android:id="@+id/NoButton"
-        android:background="#ffffff"/>
+        android:background="#ffffff"
+
+        android:drawableRight="@drawable/no_icon"
+
+        />
 </LinearLayout>
 <Button
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
     android:text="@string/next_button"
     android:id="@+id/NextButton"
     android:layout_gravity="center"
+    android:drawableRight="@drawable/next_icon"
     android:background="#ffffff"/>
 
 </LinearLayout>
