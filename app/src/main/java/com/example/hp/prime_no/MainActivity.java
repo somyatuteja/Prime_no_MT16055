@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG,"in ChangeQuestion");
         Random r=new Random();
          ran=r.nextInt(1000);
-        TextView QuestionTextView=(TextView)findViewById(R.id.abc);
+        TextView QuestionTextView=(TextView)findViewById(R.id.ques);
         try {
             if( QuestionTextView != null) {
                 QuestionTextView.setText("Is " + ran + " a prime no?");
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             ran = savedInstanceState.getInt(LAST_QUESTION);
             ans = savedInstanceState.getBoolean(LAST_ANSWER);
-            TextView QuestionTextView = (TextView) findViewById(R.id.abc);
+            TextView QuestionTextView = (TextView) findViewById(R.id.ques);
             try {
                 QuestionTextView.setText("Is " + ran + " a prime no?");
             } catch (Exception e) {
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showToast(!ans);
-                    // changeQuestion();
+                     changeQuestion();
                 }
             });
         } catch (Exception e) {
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showToast(ans);
-                    //changeQuestion();
+                    changeQuestion();
                 }
             });
             mNextButton.setOnClickListener(new View.OnClickListener() {
