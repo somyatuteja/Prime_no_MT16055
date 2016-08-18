@@ -7,4 +7,5 @@
     <string name="next_button">Next</string>
     <string name="count">No of correct answers =</string>
     <string name="Welcome">WELCOME</string>
+    <string name="zero">0</string>
 </resources>

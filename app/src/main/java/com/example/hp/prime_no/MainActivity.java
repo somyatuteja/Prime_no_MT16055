@@ -6,24 +6,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = "MainActivity";
-    static final String LAST_QUESTION="Last Question";
-    static final String LAST_ANSWER="Last Answer";
-   private Button mYesButton;
-    private Button mNoButton;
-    private Button mNextButton;
+    private static final String TAG = "MainActivity";
+    private static final String LAST_QUESTION="Last Question";
+   private static final String LAST_ANSWER="Last Answer";
+   private static final String TOTAL="No of Correct Answers";
+
     private TextView cor_tv;
-    static boolean ans=false;
-    static int ran;
- public boolean isPrime(int r)
+   private static boolean ans=false;
+   private static int ran;
+   private static int c;
+ private boolean isPrime(int r)
  {
      if (r==2) return true;
      if(r%2==0) return false;
@@ -35,32 +33,46 @@ public class MainActivity extends AppCompatActivity {
      return true;
  }
 
-    public void changeQuestion()
+    private void changeQuestion()
     {
         Log.d(TAG,"in ChangeQuestion");
         Random r=new Random();
          ran=r.nextInt(1000);
         TextView QuestionTextView=(TextView)findViewById(R.id.abc);
-        QuestionTextView.setText("Is "+ran+" a prime no?");
+        try {
+            if( QuestionTextView != null) {
+                QuestionTextView.setText("Is " + ran + " a prime no?");
+            }
+        }
+        catch(Exception e)
+        {
+   Log.d(TAG,e.getMessage());
+        }
         ans=this.isPrime(ran);
 
     }
-    public void showToast(boolean b)
+    private void showToast(boolean b)
     {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
-        if(b==true)
+        if(b)
         {
             Toast toast = Toast.makeText(context,"correct", duration);
             toast.show();
             cor_tv=(TextView)findViewById(R.id.correct_tv);
-            int c=Integer.parseInt(cor_tv.getText().toString());
+            try
+
+            {
+                c = Integer.parseInt(cor_tv.getText().toString());
+            }
+            catch(Exception e)
+            {Log.d(TAG,e.getMessage());}
             c=c+1;
             cor_tv.setText(String.valueOf(c));
 
 
         }
-        if(b==false)
+        if(!b)
         {
             Toast toast = Toast.makeText(context,"incorrect", duration);
             toast.show();
@@ -72,40 +84,52 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.v(TAG, "In onCreate");
-        mYesButton = (Button) findViewById(R.id.YesButton);
-        mNoButton = (Button) findViewById(R.id.NoButton);
-        mNextButton = (Button) findViewById(R.id.NextButton);
+        Button mYesButton = (Button) findViewById(R.id.YesButton);
+        Button mNoButton = (Button) findViewById(R.id.NoButton);
+        Button mNextButton = (Button) findViewById(R.id.NextButton);
         if (savedInstanceState == null) {
             this.changeQuestion();
             Log.v(TAG, "Null saved Instance");
         } else {
             ran = savedInstanceState.getInt(LAST_QUESTION);
-            ans=savedInstanceState.getBoolean(LAST_ANSWER);
+            ans = savedInstanceState.getBoolean(LAST_ANSWER);
             TextView QuestionTextView = (TextView) findViewById(R.id.abc);
-            QuestionTextView.setText("Is " + ran + " a prime no?");
+            try {
+                QuestionTextView.setText("Is " + ran + " a prime no?");
+            } catch (Exception e) {
+                Log.d(TAG,e.getMessage());
+            }
             Log.v(TAG, "Restored");
+            cor_tv = (TextView) findViewById(R.id.correct_tv);
+            cor_tv.setText(String.valueOf(c));
+
         }
-        mNoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showToast(!ans);
-                // changeQuestion();
-            }
-        });
-        mYesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showToast(ans);
-                //changeQuestion();
-            }
-        });
-        mNextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeQuestion();
-            }
-        });
-    }
+        try {
+            mNoButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showToast(!ans);
+                    // changeQuestion();
+                }
+            });
+        } catch (Exception e) {
+        }
+        try {
+            mYesButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showToast(ans);
+                    //changeQuestion();
+                }
+            });
+            mNextButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    changeQuestion();
+                }
+            });
+        } catch (Exception e){}}
+
 
 
 
@@ -116,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "Inside onSaveInstance");
         savedInstanceState.putInt(LAST_QUESTION,ran);
         savedInstanceState.putBoolean(LAST_ANSWER,ans);
+        savedInstanceState.putInt(TOTAL,c);
     }
 
     @Override
