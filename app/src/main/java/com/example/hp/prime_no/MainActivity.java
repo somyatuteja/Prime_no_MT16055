@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String LAST_QUESTION="Last Question";
    private static final String LAST_ANSWER="Last Answer";
    private static final String TOTAL="No of Correct Answers";
-
+    private int mRid=100;
     private TextView cor_tv;
    private static boolean ans=false;
    private static int ran;
@@ -85,10 +85,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.v(TAG, "In onCreate");
+
         Button mYesButton = (Button) findViewById(R.id.YesButton);
         Button mNoButton = (Button) findViewById(R.id.NoButton);
         Button mNextButton = (Button) findViewById(R.id.NextButton);
         Button mHintButton=(Button) findViewById(R.id.HintButton);
+
+
         if (savedInstanceState == null) {
             this.changeQuestion();
             Log.v(TAG, "Null saved Instance");
@@ -137,15 +140,10 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getBaseContext(),HintActivity.class);
-
-                    startActivity(intent);
+                    startActivityForResult(intent,mRid);
                 }
             });
         } catch (Exception e){}}
-
-
-
-
 
 
 
@@ -168,4 +166,32 @@ public class MainActivity extends AppCompatActivity {
 protected void onResume() {
     super.onResume();
     Log.v(TAG, "In onResume");
-}}
+
+}
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if(requestCode==mRid)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                boolean b=data.getBooleanExtra(HintActivity.HINT,false);
+                if(!b) {
+                    Context context = getApplicationContext();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, "Good, You didn't take the hint.", duration);
+                    toast.show();
+                }
+                if(b)
+                {
+                    Context context = getApplicationContext();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, "You took the hint.", duration);
+                    toast.show();
+
+                }
+            }
+
+        }
+    }
+}

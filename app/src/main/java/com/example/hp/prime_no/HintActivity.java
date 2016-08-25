@@ -1,11 +1,13 @@
 package com.example.hp.prime_no;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 public class HintActivity extends AppCompatActivity {
     boolean tookhint=false;
     public static final String HINT="hint output";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -39,7 +42,10 @@ public class HintActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(getBaseContext(),MainActivity.class);
                     intent.putExtra(HINT,tookhint);
-                    startActivity(intent);
+                    setResult(Activity.RESULT_OK,intent);
+                    Log.v("MainActivity","In HINT");
+                    finish();
+
                 }
             });
         } catch (Exception e){}
