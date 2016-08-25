@@ -1,6 +1,7 @@
 package com.example.hp.prime_no;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         Button mYesButton = (Button) findViewById(R.id.YesButton);
         Button mNoButton = (Button) findViewById(R.id.NoButton);
         Button mNextButton = (Button) findViewById(R.id.NextButton);
+        Button mHintButton=(Button) findViewById(R.id.HintButton);
         if (savedInstanceState == null) {
             this.changeQuestion();
             Log.v(TAG, "Null saved Instance");
@@ -128,7 +130,20 @@ public class MainActivity extends AppCompatActivity {
                     changeQuestion();
                 }
             });
+        } catch (Exception e){}
+
+        try {
+            mHintButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getBaseContext(),HintActivity.class);
+
+                    startActivity(intent);
+                }
+            });
         } catch (Exception e){}}
+
+
 
 
 

@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="50dp"
+        android:paddingTop="30dp"
         android:textSize="40dp"
         android:paddingBottom="20dp"
         android:layout_gravity="center"
@@ -93,6 +93,40 @@
 
             />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:paddingRight="1dp"
+            android:paddingLeft="1dp"
+            android:text="@string/hint_button"
+            android:background="#ffffff"
+            android:id="@+id/HintButton"
+
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:paddingRight="1dp"
+            android:paddingLeft="1dp"
+            android:text="@string/cheat_button"
+            android:background="#ffffff"
+            android:id="@+id/CheatButton"
+            />
+    </LinearLayout>
 
 
-</LinearLayout>
+    </LinearLayout>
+
+
+

@@ -8,4 +8,10 @@
     <string name="count">No of correct answers =</string>
     <string name="Welcome">WELCOME</string>
     <string name="zero">0</string>
+    <string name="title_activity_hint_">Hint_Activity</string>
+    <string name="go_ahead">Are you sure you want to Continue?</string>
+    <string name="hint">Try to factorize the number</string>
+    <string name="hint_button">Hint</string>
+    <string name="cheat_button">Cheat</string>
+    <string name="title_activity_hint">HintActivity</string>
 </resources>
