@@ -12,38 +12,41 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class HintActivity extends AppCompatActivity {
-    boolean tookhint=false;
-    public static final String HINT="hint output";
+public class CheatActivity extends AppCompatActivity {
 
+    boolean  tookcheat=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hint);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        Button mYesButtonHint =(Button) findViewById(R.id.YesButtonHint);
-        Button mNoButtonHint =(Button) findViewById(R.id.NoButtonHint);
 
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cheat);
+        Button mYesButtonCheat =(Button) findViewById(R.id.YesButtonCheat);
+        Button mNoButtonCheat =(Button) findViewById(R.id.NoButtonCheat);
 
         try {
-            mYesButtonHint.setOnClickListener(new View.OnClickListener() {
+            mYesButtonCheat.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
-                    TextView mHintTextView=(TextView) findViewById(R.id.hint_tv);
-                    mHintTextView.setText("Try factoring the number");
-                    tookhint=true;
+                    int ques=getIntent().getIntExtra("Question",0);
+                    boolean b=getIntent().getBooleanExtra("Answer",false);
+                    TextView mCheatTextView =(TextView) findViewById(R.id.CheatTextView);
+                    mCheatTextView.setText(ques +"is prime no. ="+b);
+
+                    tookcheat=true;
                 }
             });
         } catch (Exception e){}
         try {
-            mNoButtonHint.setOnClickListener(new View.OnClickListener() {
+            mNoButtonCheat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getBaseContext(),MainActivity.class);
-                    intent.putExtra(HINT,tookhint);
+                    intent.putExtra("CHEAT",tookcheat);
                     setResult(Activity.RESULT_OK,intent);
-                    Log.v("MainActivity","In HINT");
+
                     finish();
 
                 }
@@ -58,7 +61,7 @@ public class HintActivity extends AppCompatActivity {
 
         try {
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
-            intent.putExtra(HINT, tookhint);
+            intent.putExtra("CHEAT", tookcheat);
             setResult(Activity.RESULT_OK, intent);
             Log.v("MainActivity", "In HINT");
             finish();
@@ -71,5 +74,5 @@ public class HintActivity extends AppCompatActivity {
     }
 
 
-    }
 
+}

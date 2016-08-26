@@ -8,8 +8,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:alwaysRetainTaskState="true" >
+        <activity
+            android:name=".MainActivity"
+            android:alwaysRetainTaskState="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,6 +20,10 @@
         <activity
             android:name=".HintActivity"
             android:label="@string/title_activity_hint"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CheatActivity"
+            android:label="@string/title_activity_cheat"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

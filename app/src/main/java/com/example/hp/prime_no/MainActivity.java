@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String LAST_QUESTION="Last Question";
    private static final String LAST_ANSWER="Last Answer";
    private static final String TOTAL="No of Correct Answers";
-    private int mRid=100;
+    private int mRidH=100;
+    private int mRidC=10;
     private TextView cor_tv;
    private static boolean ans=false;
    private static int ran;
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getBaseContext(),HintActivity.class);
-                    startActivityForResult(intent,mRid);
+                    startActivityForResult(intent,mRidH);
                 }
             });
         } catch (Exception e){}
@@ -149,8 +150,10 @@ public class MainActivity extends AppCompatActivity {
             mCheatButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getBaseContext(),HintActivity.class);
-                    startActivityForResult(intent,mRid);
+                    Intent intent = new Intent(getBaseContext(),CheatActivity.class);
+                    intent.putExtra("Question",ran);
+                    intent.putExtra("Answer",ans);
+                    startActivityForResult(intent,mRidC);
                 }
             });
         } catch (Exception e){}
@@ -182,7 +185,7 @@ protected void onResume() {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        if(requestCode==mRid)
+        if(requestCode==mRidH)
         {
             if(resultCode==RESULT_OK)
             {
@@ -198,6 +201,28 @@ protected void onResume() {
                     Context context = getApplicationContext();
                     int duration = Toast.LENGTH_SHORT;
                     Toast toast = Toast.makeText(context, "You took the hint.", duration);
+                    toast.show();
+
+                }
+            }
+
+        }
+        if(requestCode==mRidC)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                boolean b=data.getBooleanExtra("CHEAT",false);
+                if(!b) {
+                    Context context = getApplicationContext();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, "Good, You didn't Cheat", duration);
+                    toast.show();
+                }
+                if(b)
+                {
+                    Context context = getApplicationContext();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, "You Cheated.", duration);
                     toast.show();
 
                 }
