@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         Button mNoButton = (Button) findViewById(R.id.NoButton);
         Button mNextButton = (Button) findViewById(R.id.NextButton);
         Button mHintButton=(Button) findViewById(R.id.HintButton);
+        Button mCheatButton=(Button)findViewById(R.id.CheatButton);
 
 
         if (savedInstanceState == null) {
@@ -143,7 +144,17 @@ public class MainActivity extends AppCompatActivity {
                     startActivityForResult(intent,mRid);
                 }
             });
-        } catch (Exception e){}}
+        } catch (Exception e){}
+        try {
+            mCheatButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getBaseContext(),HintActivity.class);
+                    startActivityForResult(intent,mRid);
+                }
+            });
+        } catch (Exception e){}
+    }
 
 
 

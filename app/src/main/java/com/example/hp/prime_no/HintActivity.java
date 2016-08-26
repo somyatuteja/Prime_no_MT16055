@@ -51,6 +51,24 @@ public class HintActivity extends AppCompatActivity {
         } catch (Exception e){}
 
     }
+    @Override
+    public void onBackPressed()
+    {
+        Log.v("MainActivity","in onBackPressed");
+       // super.onBackPressed();
+        try {
+            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            intent.putExtra(HINT, tookhint);
+            setResult(Activity.RESULT_OK, intent);
+            Log.v("MainActivity", "In HINT");
+            finish();
+        }
+        catch (Exception e)
+
+        {
+            e.printStackTrace();
+        }
+    }
 
 
     }
